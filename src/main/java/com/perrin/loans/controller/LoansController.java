@@ -65,7 +65,6 @@ public class LoansController {
             summary = "Fetch Loan Details REST API",
             description = "REST API to fetch loan details based on a mobile number"
     )
-
     @ApiResponse(
             responseCode = "200",
             description = "HTTP Status OK"
@@ -80,7 +79,7 @@ public class LoansController {
 
     @GetMapping("/fetch")
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
-                                                     @Pattern(regexp = "(^$|\\D{10})", message = "Mobile number must be 10 digits")
+                                                     @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 12 digits")
                                                      String mobileNumber) {
         LoansDto loansDto = iLoansService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loansDto);
